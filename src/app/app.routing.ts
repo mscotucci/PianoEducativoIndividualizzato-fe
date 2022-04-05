@@ -1,8 +1,9 @@
-import { Route } from '@angular/router';
+import { ExtraOptions, PreloadAllModules, Route, RouterModule } from '@angular/router';
 import { AuthGuard } from 'app/core/auth/guards/auth.guard';
 import { NoAuthGuard } from 'app/core/auth/guards/noAuth.guard';
 import { LayoutComponent } from 'app/layout/layout.component';
 import { InitialDataResolver } from 'app/app.resolvers';
+import { NgModule } from '@angular/core';
 
 // @formatter:off
 /* eslint-disable max-len */
@@ -10,14 +11,14 @@ import { InitialDataResolver } from 'app/app.resolvers';
 export const appRoutes: Route[] = [
 
     // Redirect empty path to '/example'
-    {path: '', pathMatch : 'full', redirectTo: 'example'},
+    {path: '', pathMatch : 'full', redirectTo: 'pei-documents'},
 
     // Redirect signed in user to the '/example'
     //
     // After the user signs in, the sign in page will redirect the user to the 'signed-in-redirect'
     // path. Below is another redirection for that path to redirect the user to the desired
     // location. This is a small convenience to keep all main routes together here on this file.
-    {path: 'signed-in-redirect', pathMatch : 'full', redirectTo: 'example'},
+    { path: 'signed-in-redirect', pathMatch: 'full', redirectTo: 'pei-documents'},
 
     // Auth routes for guests
     {
@@ -74,7 +75,20 @@ export const appRoutes: Route[] = [
             initialData: InitialDataResolver,
         },
         children   : [
-            {path: 'example', loadChildren: () => import('app/modules/admin/example/example.module').then(m => m.ExampleModule)},
+            { path: 'pei-documents', loadChildren: () => import('app/modules/admin/pei-documents/pei-documents.module').then(m => m.PeiDocumentsModule) }
         ]
-    }
+    },
+
+
 ];
+
+const routerConfig: ExtraOptions = {
+    preloadingStrategy: PreloadAllModules,
+    scrollPositionRestoration: 'enabled'
+};
+
+@NgModule({
+    imports: [RouterModule.forRoot(appRoutes, routerConfig)],
+    exports: [RouterModule]
+})
+export class AppRoutingModule { }

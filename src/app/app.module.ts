@@ -11,12 +11,9 @@ import { appConfig } from 'app/core/config/app.config';
 import { mockApiServices } from 'app/mock-api';
 import { LayoutModule } from 'app/layout/layout.module';
 import { AppComponent } from 'app/app.component';
-import { appRoutes } from 'app/app.routing';
+import { AppRoutingModule } from 'app/app.routing';
 
-const routerConfig: ExtraOptions = {
-    preloadingStrategy       : PreloadAllModules,
-    scrollPositionRestoration: 'enabled'
-};
+
 
 @NgModule({
     declarations: [
@@ -25,7 +22,7 @@ const routerConfig: ExtraOptions = {
     imports     : [
         BrowserModule,
         BrowserAnimationsModule,
-        RouterModule.forRoot(appRoutes, routerConfig),
+        AppRoutingModule,
 
         // Fuse, FuseConfig & FuseMockAPI
         FuseModule,
