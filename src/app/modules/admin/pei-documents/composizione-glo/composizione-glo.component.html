@@ -1,0 +1,68 @@
+<div class="w-full max-w-3xl">
+
+    <!-- Form -->
+    <form [formGroup]="formGroup">
+
+        <!-- Section -->
+        <div class="w-full">
+            <div class="text-xl">Gruppo di Lavoro Operativo per l'inclusione</div>
+            <div class="text-secondary">Art. 15, commi 10 e 11 della L. 104/1992 (come modif. dal D.Lgs 96/2019)</div>
+        </div>
+        <div class="grid sm:grid-cols-9 gap-6 w-full mt-8">
+            <ng-container formArrayName="glos">
+
+                <ng-container *ngFor="let operatoreForm of glos.controls;let i=index">
+
+                    <ng-container [formGroup]="operatoreForm">
+
+                        <!-- Nome -->
+                        <div class="sm:col-span-2">
+                            <mat-form-field class="fuse-mat-no-subscript w-full">
+                                <mat-label>Nome</mat-label>
+                                <input [formControlName]="'nome'" matInput>
+                            </mat-form-field>
+                        </div>
+                        <!-- Cognome -->
+                        <div class="sm:col-span-2">
+                            <mat-form-field class="fuse-mat-no-subscript w-full">
+                                <mat-label>Cognome</mat-label>
+                                <input [formControlName]="'cognome'" matInput>
+                            </mat-form-field>
+                        </div>
+                        <!-- Titolo Intervento  -->
+                        <div class="sm:col-span-4">
+                            <mat-form-field class="fuse-mat-no-subscript w-full">
+                                <mat-label>Titolo Intervento</mat-label>
+                                <input [formControlName]="'titoloIntervento'" matInput>
+                            </mat-form-field>
+                            <div class="mt-1 text-md text-hint">Specificare a quale titolo ciascun componente interviene al GLO</div>
+                        </div>
+                        <!-- Delete  -->
+                        <div class="sm:col-span-1 sm:mt-7">
+                            <button mat-stroked-button type="button" (click)="deleteOpertatore(i)">
+                                <mat-icon svgIcon="heroicons_solid:trash" color="warn"></mat-icon>
+                            </button>
+                        </div>
+
+                    </ng-container>
+
+                </ng-container>
+
+            </ng-container>
+
+        </div>
+
+        <!-- Divider -->
+        <div class="mt-11 mb-10 border-t"></div>
+
+        <!-- Actions -->
+        <div class="flex items-center justify-end">
+            <button mat-stroked-button type="button" [routerLink]="['/']">
+                Annulla
+            </button>
+            <button class="ml-4" mat-flat-button type="button" [color]="'primary'">Salva
+            </button>
+        </div>
+    </form>
+
+</div>

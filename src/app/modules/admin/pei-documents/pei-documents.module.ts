@@ -20,13 +20,15 @@ import { FuseAlertModule } from '@fuse/components/alert';
 import { SharedModule } from 'app/shared/shared.module';
 import { PeiDocumentsListComponent } from './list/list.component';
 import { DatiGeneraliComponent } from './dati-generali/dati-generali.component';
+import { ComposizioneGloComponent } from './composizione-glo/composizione-glo.component';
 
 @NgModule({
   declarations: [
     PeiDocumentsComponent,
     DocumentComponent,
     PeiDocumentsListComponent,
-    DatiGeneraliComponent
+    DatiGeneraliComponent,
+    ComposizioneGloComponent
   ],
   imports: [
     CommonModule,
