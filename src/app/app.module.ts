@@ -13,6 +13,7 @@ import { LayoutModule } from 'app/layout/layout.module';
 import { AppComponent } from 'app/app.component';
 import { AppRoutingModule } from 'app/app.routing';
 
+import { MAT_DATE_LOCALE } from '@angular/material/core';
 
 
 @NgModule({
@@ -40,7 +41,8 @@ import { AppRoutingModule } from 'app/app.routing';
     ],
     bootstrap   : [
         AppComponent
-    ]
+    ],
+    providers: [{ provide: MAT_DATE_LOCALE, useValue: 'it-IT' }]
 })
 export class AppModule
 {

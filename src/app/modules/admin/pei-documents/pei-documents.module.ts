@@ -12,15 +12,21 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatTableModule } from '@angular/material/table';
+import { MatSortModule } from '@angular/material/sort';
+import { MatMomentDateModule } from '@angular/material-moment-adapter';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 import { FuseAlertModule } from '@fuse/components/alert';
 import { SharedModule } from 'app/shared/shared.module';
 import { PeiDocumentsListComponent } from './list/list.component';
+import { DatiGeneraliComponent } from './dati-generali/dati-generali.component';
 
 @NgModule({
   declarations: [
     PeiDocumentsComponent,
     DocumentComponent,
-    PeiDocumentsListComponent
+    PeiDocumentsListComponent,
+    DatiGeneraliComponent
   ],
   imports: [
     CommonModule,
@@ -33,6 +39,11 @@ import { PeiDocumentsListComponent } from './list/list.component';
     MatSelectModule,
     MatSidenavModule,
     MatSlideToggleModule,
+    MatTableModule,
+    MatSortModule,
+    MatButtonModule,
+    MatMomentDateModule,
+    MatDatepickerModule,
     FuseAlertModule,
     SharedModule
   ]

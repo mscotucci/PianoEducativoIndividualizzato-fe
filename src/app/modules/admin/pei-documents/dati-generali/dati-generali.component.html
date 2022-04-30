@@ -1,0 +1,275 @@
+<div class="w-full max-w-3xl">
+
+    <!-- Form -->
+    <form [formGroup]="formGroup">
+
+        <!-- Section -->
+        <div class="w-full">
+            <div class="text-xl">Dati Generali PEI</div>
+            <div class="text-secondary">Inserire i dati generali del documento</div>
+        </div>
+        <div class="grid sm:grid-cols-4 gap-6 w-full mt-8">
+            <!-- Year -->
+            <div class="sm:col-span-1">
+                <mat-form-field class="fuse-mat-no-subscript w-full">
+                    <mat-label>Anno Scolastico</mat-label>
+                    <input [formControlName]="'year'" matInput>
+                </mat-form-field>
+            </div>
+            <!-- Alunno -->
+            <div class="sm:col-span-4">
+                <mat-form-field class="fuse-mat-no-subscript w-full">
+                    <mat-label>Alunno</mat-label>
+                    <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:user'" matPrefix></mat-icon>
+                    <input [formControlName]="'alunno'" matInput>
+                </mat-form-field>
+            </div>
+            <!-- codiceSostitutivoPersonale -->
+            <div class="sm:col-span-4">
+                <mat-form-field class="fuse-mat-no-subscript w-full">
+                    <mat-label>Codice Sostitutivo Personale</mat-label>
+                    <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:key'" matPrefix></mat-icon>
+                    <input [formControlName]="'codiceSostitutivoPersonale'" matInput>
+                </mat-form-field>
+            </div>
+            <!-- classe -->
+            <div class="sm:col-span-1">
+                <mat-form-field class="fuse-mat-no-subscript w-full">
+                    <mat-label>Classe</mat-label>
+                    <input [formControlName]="'classe'" matInput>
+                </mat-form-field>
+            </div>
+            <!-- scuola -->
+            <div class="sm:col-span-2">
+                <mat-form-field class="fuse-mat-no-subscript w-full">
+                    <mat-label>Scuola</mat-label>
+                    <input [formControlName]="'scuola'" matInput>
+                </mat-form-field>
+            </div>
+            <!-- plessoSede -->
+            <div class="sm:col-span-1">
+                <mat-form-field class="fuse-mat-textarea fuse-mat-no-subscript w-full">
+                    <mat-label>Plesso o Sede</mat-label>
+                    <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:office-building'" matPrefix></mat-icon>
+                    <input [formControlName]="'plessoSede'" matInput>
+                </mat-form-field>
+            </div>
+            <!-- dataRilascio -->
+            <div class="sm:col-span-1">
+                <mat-form-field class="fuse-mat-no-subscript w-full">
+                    <mat-label>Data Rilascio</mat-label>
+                    <input matInput [matDatepicker]="dataRilascio" [formControlName]="'dataRilascio'">
+                    <mat-datepicker-toggle matPrefix [for]="dataRilascio"></mat-datepicker-toggle>
+                    <mat-datepicker #dataRilascio></mat-datepicker>
+                </mat-form-field>
+            </div>
+            <!-- dataScadenza -->
+            <div class="sm:col-span-2">
+                <mat-form-field class="fuse-mat-no-subscript w-full">
+                    <mat-label>Data scadenza o revedibilità</mat-label>
+                    <input matInput [matDatepicker]="dataScadenza" [formControlName]="'dataScadenza'">
+                    <mat-datepicker-toggle matPrefix [for]="dataScadenza"></mat-datepicker-toggle>
+                    <mat-datepicker #dataScadenza></mat-datepicker>
+                </mat-form-field>
+            </div>
+            <!-- dataRedazioneProfiloFunzionamento -->
+            <div class="sm:col-span-2">
+                <mat-form-field class="fuse-mat-no-subscript w-full">
+                    <mat-label>Profilo funzionamento redatto in data</mat-label>
+                    <input matInput [matDatepicker]="dataRedazioneProfiloFunzionamento" [formControlName]="'dataRedazioneProfiloFunzionamento'">
+                    <mat-datepicker-toggle matPrefix [for]="dataRedazioneProfiloFunzionamento"></mat-datepicker-toggle>
+                    <mat-datepicker #dataRedazioneProfiloFunzionamento></mat-datepicker>
+                </mat-form-field>
+            </div>
+        </div>
+
+        <!-- Divider -->
+        <div class="my-10 border-t"></div>
+
+        <!-- Section -->
+        <div class="w-full">
+            <div class="text-xl">Fase Transitoria</div>
+            <div class="text-secondary">Communication details in case we want to connect with you. These will be kept
+                private.</div>
+        </div>
+        <div class="grid sm:grid-cols-4 gap-6 w-full mt-8">
+            <!-- profiloFunzionamentoDisponibile -->
+            <div class="sm:col-span-4">
+                <div class="grid grid-cols-1">
+                    <div class="flex items-center justify-between">
+                        <div class="flex-auto cursor-pointer" (click)="profiloFunzionamentoDisponibile.toggle()">
+                            <div class="leading-6 font-medium">Profilo di funzionamento non disponibile</div>
+                        </div>
+                        <mat-slide-toggle class="ml-2" [color]="'primary'" [formControlName]="'profiloFunzionamentoDisponibile'" #profiloFunzionamentoDisponibile>
+                        </mat-slide-toggle>
+                    </div>
+                </div>
+            </div>
+
+            <!-- dataRedazioneDiagnosiFunzionale -->
+            <div class="sm:col-span-2">
+                <mat-form-field class="fuse-mat-no-subscript w-full">
+                    <mat-label>Diagnosi funzionale redatta in data</mat-label>
+                    <input matInput [matDatepicker]="dataRedazioneDiagnosiFunzionale"
+                        [formControlName]="'dataRedazioneDiagnosiFunzionale'">
+                    <mat-datepicker-toggle matPrefix [for]="dataRedazioneDiagnosiFunzionale"></mat-datepicker-toggle>
+                    <mat-datepicker #dataRedazioneDiagnosiFunzionale></mat-datepicker>
+                </mat-form-field>
+            </div>
+
+            <!-- dataApprovazioneProfiloDinamicoFunzionale -->
+            <div class="sm:col-span-2">
+                <mat-form-field class="fuse-mat-no-subscript w-full">
+                    <mat-label>Profilo dimanico funzionale in vigore approvato in data</mat-label>
+                    <input matInput [matDatepicker]="dataApprovazioneProfiloDinamicoFunzionale"
+                        [formControlName]="'dataApprovazioneProfiloDinamicoFunzionale'">
+                    <mat-datepicker-toggle matPrefix [for]="dataApprovazioneProfiloDinamicoFunzionale"></mat-datepicker-toggle>
+                    <mat-datepicker #dataApprovazioneProfiloDinamicoFunzionale></mat-datepicker>
+                </mat-form-field>
+            </div>
+
+            <!-- dataRedazioneProgettoIndividuale -->
+            <div class="sm:col-span-2">
+                <mat-form-field class="fuse-mat-no-subscript w-full">
+                    <mat-label>Progetto individuale redatto in data</mat-label>
+                    <input matInput [matDatepicker]="dataRedazioneProgettoIndividuale"
+                        [formControlName]="'dataRedazioneProgettoIndividuale'">
+                    <mat-datepicker-toggle matPrefix [for]="dataRedazioneProgettoIndividuale"></mat-datepicker-toggle>
+                    <mat-datepicker #dataRedazioneProgettoIndividuale></mat-datepicker>
+                </mat-form-field>
+            </div>
+
+            <!-- dataRedazioneProgettoIndividualeNonRedatto -->
+            <div class="sm:col-span-2 md:mt-8">
+                <div class="grid grid-cols-1">
+                    <div class="flex items-center justify-between">
+                        <div class="flex-auto cursor-pointer" (click)="dataRedazioneProgettoIndividualeNonRedatto.toggle()">
+                            <div class="leading-6 font-medium">Progetto individuale non redatto</div>
+                        </div>
+                        <mat-slide-toggle class="ml-2" [color]="'primary'" [formControlName]="'dataRedazioneProgettoIndividualeNonRedatto'"
+                            #dataRedazioneProgettoIndividualeNonRedatto>
+                        </mat-slide-toggle>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Divider -->
+        <div class="my-10 border-t"></div>
+
+        <!-- PEI Provvisorio -->
+        <div class="w-full">
+            <div class="text-l">PEI Provvisorio</div>
+        </div>
+        <div class="grid sm:grid-cols-4 gap-6 w-full mt-8">
+            <!-- dataPeiProvvisorio -->
+            <div class="sm:col-span-2">
+                <mat-form-field class="fuse-mat-no-subscript w-full">
+                    <mat-label>Data</mat-label>
+                    <input matInput [matDatepicker]="dataPeiProvvisorio" [formControlName]="'dataPeiProvvisorio'">
+                    <mat-datepicker-toggle matPrefix [for]="dataPeiProvvisorio"></mat-datepicker-toggle>
+                    <mat-datepicker #dataPeiProvvisorio></mat-datepicker>
+                </mat-form-field>
+            </div>
+            <!-- numeroVerbalePeiProvvisorio -->
+            <div class="sm:col-span-2">
+                <mat-form-field class="fuse-mat-textarea fuse-mat-no-subscript w-full">
+                    <mat-label>Verbale allegato n°</mat-label>
+                    <input [formControlName]="'numeroVerbalePeiProvvisorio'" matInput>
+                </mat-form-field>
+            </div>
+        </div>
+
+        <!-- Divider -->
+        <div class="my-10 border-t"></div>
+
+        <!-- APPROVAZIONE DEL PEI E PRIMA SOTTOSCRIZIONE -->
+        <div class="w-full">
+            <div class="text-l">APPROVAZIONE DEL PEI E PRIMA SOTTOSCRIZIONE</div>
+        </div>
+        <div class="grid sm:grid-cols-4 gap-6 w-full mt-8">
+            <!-- dataPrimaSottoscrizione -->
+            <div class="sm:col-span-2">
+                <mat-form-field class="fuse-mat-no-subscript w-full">
+                    <mat-label>Data</mat-label>
+                    <input matInput [matDatepicker]="dataPrimaSottoscrizione" [formControlName]="'dataPrimaSottoscrizione'">
+                    <mat-datepicker-toggle matPrefix [for]="dataPrimaSottoscrizione"></mat-datepicker-toggle>
+                    <mat-datepicker #dataPrimaSottoscrizione></mat-datepicker>
+                </mat-form-field>
+            </div>
+            <!-- numeroVerbalePrimaSottoscrizione -->
+            <div class="sm:col-span-2">
+                <mat-form-field class="fuse-mat-textarea fuse-mat-no-subscript w-full">
+                    <mat-label>Verbale allegato n°</mat-label>
+                    <input [formControlName]="'numeroVerbalePrimaSottoscrizione'" matInput>
+                </mat-form-field>
+            </div>
+        </div>
+
+        <!-- Divider -->
+        <div class="my-10 border-t"></div>
+
+        <!-- VERIFICA INTERMEDIA -->
+        <div class="w-full">
+            <div class="text-l">VERIFICA INTERMEDIA</div>
+        </div>
+        <div class="grid sm:grid-cols-4 gap-6 w-full mt-8">
+            <!-- dataVerificaIntermedia -->
+            <div class="sm:col-span-2">
+                <mat-form-field class="fuse-mat-no-subscript w-full">
+                    <mat-label>Data</mat-label>
+                    <input matInput [matDatepicker]="dataVerificaIntermedia" [formControlName]="'dataVerificaIntermedia'">
+                    <mat-datepicker-toggle matPrefix [for]="dataVerificaIntermedia"></mat-datepicker-toggle>
+                    <mat-datepicker #dataVerificaIntermedia></mat-datepicker>
+                </mat-form-field>
+            </div>
+            <!-- numeroVerbaleVerificaIntermedia -->
+            <div class="sm:col-span-2">
+                <mat-form-field class="fuse-mat-textarea fuse-mat-no-subscript w-full">
+                    <mat-label>Verbale allegato n°</mat-label>
+                    <input [formControlName]="'numeroVerbaleVerificaIntermedia'" matInput>
+                </mat-form-field>
+            </div>
+        </div>
+
+        <!-- Divider -->
+        <div class="my-10 border-t"></div>
+
+        <!-- VERIFICA FINALE E PROPOSTE PER L’A.S. SUCCESSIVO -->
+        <div class="w-full">
+            <div class="text-l">VERIFICA FINALE E PROPOSTE PER L’A.S. SUCCESSIVO</div>
+        </div>
+        <div class="grid sm:grid-cols-4 gap-6 w-full mt-8">
+            <!-- dataVerificaFinaleProposteASSuccessivo -->
+            <div class="sm:col-span-2">
+                <mat-form-field class="fuse-mat-no-subscript w-full">
+                    <mat-label>Data</mat-label>
+                    <input matInput [matDatepicker]="dataVerificaFinaleProposteASSuccessivo"
+                        [formControlName]="'dataVerificaFinaleProposteASSuccessivo'">
+                    <mat-datepicker-toggle matPrefix [for]="dataVerificaFinaleProposteASSuccessivo"></mat-datepicker-toggle>
+                    <mat-datepicker #dataVerificaFinaleProposteASSuccessivo></mat-datepicker>
+                </mat-form-field>
+            </div>
+            <!-- numeroVerbaleVerificaFinaleProposteASSuccessivo -->
+            <div class="sm:col-span-2">
+                <mat-form-field class="fuse-mat-textarea fuse-mat-no-subscript w-full">
+                    <mat-label>Verbale allegato n°</mat-label>
+                    <input [formControlName]="'numeroVerbaleVerificaFinaleProposteASSuccessivo'" matInput>
+                </mat-form-field>
+            </div>
+        </div>
+
+        <!-- Divider -->
+        <div class="mt-11 mb-10 border-t"></div>
+
+        <!-- Actions -->
+        <div class="flex items-center justify-end">
+            <button mat-stroked-button type="button" [routerLink]="['/']">
+                Annulla
+            </button>
+            <button class="ml-4" mat-flat-button type="button" [color]="'primary'">Salva
+            </button>
+        </div>
+    </form>
+
+</div>

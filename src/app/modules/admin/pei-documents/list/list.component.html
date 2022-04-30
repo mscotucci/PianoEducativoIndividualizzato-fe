@@ -1,20 +1,96 @@
 <page-body>
     <page-header header>
-        <span title>Lista documenti</span>
-        <span subTitle>Elecno</span>
+        <span title>Lista documenti PEI</span>
+        <span subTitle>Elenco dei Piani Educativi Individuali</span>
     </page-header>
 
-    <mat-list dense *ngIf="(peiDocuments$ | async) as docs; else loading" body>
-        <mat-list-item *ngFor="let doc of docs">
-            {{doc.Scuola}}
-        </mat-list-item>
-    </mat-list>
+    <div class="grid grid-cols-1 gap-8 w-full mt-8" body>
+        <!-- Documenti PEI table -->
+        <div class="xl:col-span-2 flex flex-col flex-auto bg-card shadow rounded-2xl overflow-hidden">
+            <div class="p-6">
+                <div class="mr-4 text-lg font-medium tracking-tight leading-6 truncate">Documenti PEI</div>
+                <div class="text-secondary font-medium">Ordinati per anno corrente</div>
+            </div>
+            <div class="overflow-x-auto mx-6">
+                <table class="w-full bg-transparent" mat-table matSort [dataSource]="peiDocumentsDataSource"
+                    [trackBy]="trackByFn" #peiDocumentsTable>
 
-    <!-- Loading template -->
-    <ng-template #loading>
-        <div class="flex flex-auto flex-col items-center justify-center bg-gray-100 dark:bg-transparent">
-            <div class="mt-4 text-2xl font-semibold tracking-tight text-secondary">Loading...</div>
+                    <!-- Anno -->
+                    <ng-container matColumnDef="year">
+                        <th mat-header-cell mat-sort-header *matHeaderCellDef>
+                            Anno
+                        </th>
+                        <td mat-cell *matCellDef="let peiDocument">
+                            <span class="pr-6 font-medium text-sm text-secondary whitespace-nowrap">
+                                {{peiDocument.year}}
+                            </span>
+                        </td>
+                    </ng-container>
+
+                    <!-- Date -->
+                    <ng-container matColumnDef="dataRilascio">
+                        <th mat-header-cell mat-sort-header *matHeaderCellDef>
+                            Data Rilascio
+                        </th>
+                        <td mat-cell *matCellDef="let peiDocument">
+                            <span class="pr-6 whitespace-nowrap">
+                                {{peiDocument.dataRilascio | date:'dd/MM/yyyy'}}
+                            </span>
+                        </td>
+                    </ng-container>
+
+                    <!-- Alunno -->
+                    <ng-container matColumnDef="alunno">
+                        <th mat-header-cell mat-sort-header *matHeaderCellDef>
+                            Alunno
+                        </th>
+                        <td mat-cell *matCellDef="let peiDocument">
+                            <span class="pr-6 whitespace-nowrap">
+                                {{peiDocument.alunno}}
+                            </span>
+                        </td>
+                    </ng-container>
+
+                    <!-- Scuola -->
+                    <ng-container matColumnDef="scuola">
+                        <th mat-header-cell mat-sort-header *matHeaderCellDef>
+                            Scuola
+                        </th>
+                        <td mat-cell *matCellDef="let peiDocument">
+                            <span class="pr-6 whitespace-nowrap">
+                                {{peiDocument.scuola}}
+                            </span>
+                        </td>
+                    </ng-container>
+
+                    <!-- Actions -->
+                    <ng-container matColumnDef="actions">
+                        <th mat-header-cell *matHeaderCellDef>
+                            Azioni
+                        </th>
+                        <td mat-cell *matCellDef="let peiDocument">
+                            <a [routerLink]="['manage/'+peiDocument.id]" mat-button>
+                                <mat-icon svgIcon="picture_as_pdf" color="primary"></mat-icon>
+                            </a>
+                            <a [routerLink]="['manage/'+peiDocument.id]" mat-button>
+                                <mat-icon svgIcon="edit" color="default"></mat-icon>
+                            </a>
+                        </td>
+                    </ng-container>
+
+                    <!-- Footer -->
+                    <ng-container matColumnDef="recentOrdersTableFooter">
+                        <td class="py-6 px-0 border-0" mat-footer-cell *matFooterCellDef colspan="6">
+                            <button mat-stroked-button>See all transactions</button>
+                        </td>
+                    </ng-container>
+
+                    <tr mat-header-row *matHeaderRowDef="peiDocumentsTableColumns"></tr>
+                    <tr class="order-row h-16" mat-row *matRowDef="let row; columns: peiDocumentsTableColumns;"></tr>
+                    <tr class="h-16 border-0" mat-footer-row *matFooterRowDef="['recentOrdersTableFooter']"></tr>
+                </table>
+            </div>
         </div>
-    </ng-template>
+    </div>
 
 </page-body>

@@ -1,6 +1,7 @@
 export interface PeiDocument {
     id: string;
     year: number | null;
+    alunno: string;
     codiceSostitutivoPersonale: string;
     scuola: string;
     plessoSede: string;

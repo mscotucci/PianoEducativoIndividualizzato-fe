@@ -2,6 +2,8 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnIni
 import { MatDrawer } from '@angular/material/sidenav';
 import { Subject, takeUntil } from 'rxjs';
 import { FuseMediaWatcherService } from '@fuse/services/media-watcher';
+import { PeiDocumentsService } from '../../pei-documents.service';
+import { PeiDocument } from '../../pei-documents.types';
 
 @Component({
   selector: 'app-document',
@@ -9,19 +11,23 @@ import { FuseMediaWatcherService } from '@fuse/services/media-watcher';
   styleUrls: ['./document.component.scss']
 })
 export class DocumentComponent implements OnInit, OnDestroy {
+
   @ViewChild('drawer') drawer: MatDrawer;
   drawerMode: 'over' | 'side' = 'side';
   drawerOpened: boolean = true;
   panels: any[] = [];
-  selectedPanel: string = 'alunno';
+  selectedPanel: string = 'dati-generali';
+
   private _unsubscribeAll: Subject<any> = new Subject<any>();
+  document: PeiDocument;
 
   /**
    * Constructor
    */
   constructor(
     private _changeDetectorRef: ChangeDetectorRef,
-    private _fuseMediaWatcherService: FuseMediaWatcherService
+    private _fuseMediaWatcherService: FuseMediaWatcherService,
+    private _peiDocumentsService: PeiDocumentsService
   ) {
   }
 
@@ -33,13 +39,14 @@ export class DocumentComponent implements OnInit, OnDestroy {
    * On init
    */
   ngOnInit(): void {
+
     // Setup available panels
     this.panels = [
       {
-        id: 'alunno',
+        id: 'dati-generali',
         icon: 'heroicons_outline:user-circle',
-        title: 'Alunno',
-        description: 'Informazioni riguardanti l\'alunno'
+        title: 'Dati Generali',
+        description: 'Informazioni generali documento PEI'
       },
       {
         id: 'composizione-glo',
