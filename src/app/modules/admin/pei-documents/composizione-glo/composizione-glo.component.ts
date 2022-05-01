@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subject, takeUntil } from 'rxjs';
 import { PeiDocumentsService } from '../pei-documents.service';
@@ -8,7 +8,7 @@ import { PeiDocument } from '../pei-documents.types';
   selector: 'composizione-glo',
   templateUrl: './composizione-glo.component.html'
 })
-export class ComposizioneGloComponent implements OnInit {
+export class ComposizioneGloComponent implements OnInit, OnDestroy {
 
   formGroup: FormGroup;
   document: PeiDocument;

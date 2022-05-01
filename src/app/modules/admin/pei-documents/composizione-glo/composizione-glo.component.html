@@ -9,6 +9,7 @@
             <div class="text-secondary">Art. 15, commi 10 e 11 della L. 104/1992 (come modif. dal D.Lgs 96/2019)</div>
         </div>
         <div class="grid sm:grid-cols-9 gap-6 w-full mt-8">
+
             <ng-container formArrayName="glos">
 
                 <ng-container *ngFor="let operatoreForm of glos.controls;let i=index">
@@ -60,7 +61,8 @@
             <button mat-stroked-button type="button" [routerLink]="['/']">
                 Annulla
             </button>
-            <button class="ml-4" mat-flat-button type="button" [color]="'primary'">Salva
+            <button class="ml-4" mat-flat-button type="button" [color]="'primary'" [routerLink]="['/']">
+                Salva
             </button>
         </div>
     </form>

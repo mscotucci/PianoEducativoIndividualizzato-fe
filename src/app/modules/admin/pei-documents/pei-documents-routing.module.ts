@@ -20,6 +20,10 @@ const routes: Routes = [
         resolve: {
           document: PeiDocumentsResolver
         }
+      },
+      {
+        path: 'manage',
+        component: DocumentComponent
       }
     ]
   }
